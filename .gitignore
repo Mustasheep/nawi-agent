@@ -1,0 +1,9 @@
+# Credenciais
+.env
+
+# Cache
+__pycache__/
+
+# Ambiente
+.venv/
+drafts/
