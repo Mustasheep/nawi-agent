@@ -1,3 +1,10 @@
+"""
+Testes do base tool
+
+use na pasta raiz o comando:
+python -m tests.base_tool_test
+"""
+
 from tools.base_tool import Tool
 
 # Testando erro

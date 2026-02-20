@@ -1,3 +1,10 @@
+"""
+Testes do code analyzer
+
+use na pasta raiz o comando:
+python -m tests.code_analyzer_test
+"""
+
 from tools.code_analyzer import CodeAnalyzerTool
 import asyncio
 

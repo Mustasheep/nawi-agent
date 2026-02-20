@@ -1,3 +1,10 @@
+"""
+Testes do quality checker
+
+use na pasta raiz o comando:
+python -m tests.quality_checker_test
+"""
+
 from tools.quality_checker import QualityCheckerTool
 import asyncio
 
