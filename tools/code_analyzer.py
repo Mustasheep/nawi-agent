@@ -29,7 +29,7 @@ class CodeAnalyzerTool(Tool):
             "Analisa código fonte em profundidade. "
             "Extrai funções, classes, métodos, imports, docstrings e "
             "calcula métricas como complexidade ciclomática e linhas de código. "
-            "Suporta Python, JavaScript, TypeScript, Java, Go e C++."
+            "Suporta Python, JavaScript e TypeScript"
         )
     
     @property
@@ -44,7 +44,7 @@ class CodeAnalyzerTool(Tool):
                 "language": {
                     "type": "string",
                     "description": "Linguagem do código",
-                    "enum": ["python", "javascript", "typescript", "java", "go", "cpp"]
+                    "enum": ["python", "javascript", "typescript"]
                 },
                 "file_path": {
                     "type": "string",
