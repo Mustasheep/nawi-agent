@@ -148,9 +148,13 @@ class ArchitectureDetectorTool(Tool):
         confidence = 0.0
 
         # Pontuação por diretórios
+        # Regra de match:
+        # - match exato (ex.: "models")
+        # - ou diretório terminando com o padrão (ex.: "user_models" → "models")
         matched_dirs = [
-            key for key, weight in cfg.dir_weights.items()
-            if any(key in d for d in dirs_lower)
+            key
+            for key, weight in cfg.dir_weights.items()
+            if any(d == key or d.endswith(key) for d in dirs_lower)
         ]
         if len(matched_dirs) < cfg.min_dir_matches:
             return None
@@ -198,7 +202,8 @@ class ArchitectureDetectorTool(Tool):
             if any(p in f for p in ["irepository", "repository_interface", "repositoryinterface", "base_repository"])
         ]
         if interface_files:
-            confidence += 0.3
+            # Bônus maior para interfaces, garantindo confiança > 0.7
+            confidence += 0.35
             evidence.append("Interfaces/abstrações de repository encontradas")
 
         if "repositor" in struct_str:
