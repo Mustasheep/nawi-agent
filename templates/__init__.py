@@ -1,5 +1,5 @@
 """
-Documentation templates
+Módulo dos templates
 """
 
 from .doc_templates import DocumentationTemplate, DocumentationTemplateManager
