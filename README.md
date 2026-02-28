@@ -8,6 +8,7 @@
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
 [![Claude API](https://img.shields.io/badge/Claude-Sonnet%204-purple.svg)](https://www.anthropic.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/Version-3.0-green.svg)](https://opensource.org/licenses/MIT)
 
 **O Nawi é um agente inteligente baseado em tools para geração automática de documentação técnica profissional usando Claude AI**
 
