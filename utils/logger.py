@@ -57,6 +57,8 @@ class Logger:
 
     def debug(self, message:str):
         """Log de debug"""
+        if not self.verbose:
+            return
         print(self._format_message("DEBUG", message, "magenta"))
 
     def section(self, title:str):
