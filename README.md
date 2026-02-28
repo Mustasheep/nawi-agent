@@ -45,10 +45,11 @@ nawi-agent/
 │   └── EXAMPLE.md                  # Casos de uso com exemplos
 │
 ├── tools/
+|   ├── architecture/               # Pasta com a tool de detecção de arquitetura
+│   │   └── ...
 │   ├── __init__.py
 │   ├── base_tool.py                # Classe abstrata para tools
 │   ├── code_analyzer.py            # Análise de código
-│   ├── architecture_detector.py    # Detecção de arquitetura
 │   ├── dependency_mapper.py        # Mapeamento de dependências
 │   └── quality_checker.py          # Verificação de qualidade
 │
