@@ -58,6 +58,7 @@ nawi-agent/
 │
 └── utils/
     ├── __init__.py
+    ├── banner.py                   # Display do Nawi no terminal
     └── logger.py                   # Sistema de logging
 ```
 
@@ -73,7 +74,7 @@ nawi-agent/
 
 ```bash
 git clone <repository-url>
-cd doc_agent
+cd nawi-agent
 ```
 
 ### 2. Instale as dependências
@@ -132,7 +133,7 @@ python main.py ./src -n "Meu Projeto API"
 
 ```bash
 # Template específico
-python main.py ./api -t api -o API_DOCS.md
+python main.py ./src/notebook.ipynb -t single_file -o note_docs.md
 
 # Modo verbose (mais logs)
 python main.py ./src -v
