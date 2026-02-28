@@ -1,5 +1,5 @@
 """
-Core modules for the documentation agent
+Módulos core do agente
 """
 
 from .claude_client import ClaudeClient
