@@ -1,4 +1,4 @@
-# Agente Nawi
+# Agente Nawi - Light Mode
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://python.org)
 [![Claude API](https://img.shields.io/badge/powered%20by-Claude%20API-orange)](https://anthropic.com)
