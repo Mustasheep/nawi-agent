@@ -1,6 +1,6 @@
 # Agente Nawi - Light Mode
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://python.org)
+[![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)](https://python.org)
 [![Claude API](https://img.shields.io/badge/powered%20by-Claude%20API-orange)](https://anthropic.com)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-professional-lightgrey)](https://github.com)
