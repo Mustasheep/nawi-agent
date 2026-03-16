@@ -24,31 +24,62 @@ O Agente Nawi é uma ferramenta de documentação técnica automatizada que reso
 
 ```mermaid
 graph TB
-    A[main.py] --> B[PathPicker/FolderPicker]
-    A --> C[FileScanner]
-    A --> D[DocGenerator]
+    subgraph "Interface"
+        A[main.py]
+        B[PathPicker/<br/>FolderPicker]
+    end
     
-    B --> E[UI Interactive Selection]
-    C --> F[File Analysis & Categorization]
-    D --> G[ClaudeClient]
+    subgraph "Configuração"
+        H[Settings]
+        I[Templates]
+    end
     
-    H[Settings] --> C
-    H --> D
-    H --> G
+    subgraph " "
+        C[FileScanner]
+        F[Análise & Categorização<br/>de Arquivos]
+        J[Detecção do Tipo<br/>de Projeto]
+    end
     
-    I[Templates] --> D
+    subgraph " "
+        N[Arquivo Único]
+        O[Projeto Pequeno]
+        P[Projeto Completo]
+    end
     
-    C --> J[Project Type Detection]
-    J --> K{Single File?}
-    J --> L{Small Project?}
-    J --> M{Full Project?}
+    subgraph " "
+        D[DocGenerator]
+        G[ClaudeClient<br/>↓<br/>API Claude]
+    end
     
-    K --> N[Single File Template]
-    L --> O[Small Project Template]
-    M --> P[Full Project Template]
+    A --> B
+    A --> C
+    A --> D
     
-    G --> Q[Anthropic Claude API]
-    D --> R[Generated Documentation]
+    B -.->|Seleção Interativa| C
+    H -.->|Configurações| C
+    H -.->|Configurações| D
+    I -.->|Templates Base| D
+    
+    C --> F
+    F --> J
+    
+    J -->|Arquivo único?| N
+    J -->|Projeto pequeno?| O
+    J -->|Projeto completo?| P
+    
+    N --> D
+    O --> D
+    P --> D
+    
+    D --> G
+    G --> R[📄 Documentação<br/>Gerada]
+    
+    style A fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
+    style R fill:#50C878,stroke:#2D7A4A,stroke-width:3px,color:#fff
+    style G fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
+    style N fill:#F39C12,stroke:#B8770E,stroke-width:2px,color:#fff
+    style O fill:#F39C12,stroke:#B8770E,stroke-width:2px,color:#fff
+    style P fill:#F39C12,stroke:#B8770E,stroke-width:2px,color:#fff
 ```
 
 ## Pré-requisitos
