@@ -16,10 +16,10 @@ def print_banner():
 {BORDA}========================================================{RST}
 
                  {VERDE}/^----^\{RST}
-                 {VERDE}| {TXT}0{RST}  {RED}0{RST}{VERDE} |{RST}
-    NAWI         {VERDE}|  \/  |{RST}
+                 {VERDE}| {TXT}0{RST}  {RED}0{RST} {VERDE}|{RST}
+    {TXT}Agente{RST}       {VERDE}|  \/  |{RST}
                  {VERDE}/       \{RST}
-    Agent       {VERDE}|     |;;;|{RST}
+    {TXT}NAWI{RST}        {VERDE}|     |;;;|{RST}
                 {VERDE}|     |;;;|{RST}           {MARROM}\   \\{RST}
                 {VERDE}|      \;;|{RST}          {MARROM}\\\\//{RST}
                  {VERDE}\       \|{RST}           {MARROM}/ /{RST}
@@ -28,9 +28,9 @@ def print_banner():
 {MARROM}__ --   __ -- _____ --- __  ----  ___  ---- __ -- /{RST}
 {MARROM}---------------/ /---------------\  \--------------`{RST}
                 {MARROM}\ \{RST}               {MARROM}/ /{RST}
-                {MARROM}//               {MARROM}//{RST}
-                {MARROM}\{RST}                {MARROM}\\{RST}
-
+                {MARROM}//\{RST}             {MARROM}//{RST}      
+                {MARROM}\{RST}               {MARROM}\\{RST}
+                                {MARROM}/{RST}
 {BORDA}========================================================{RST}
 """
 
