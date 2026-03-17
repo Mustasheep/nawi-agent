@@ -1,9 +1,15 @@
-# Agente Nawi - Light Mode
+<div align="center">
+  <img src="./img/nawi-banner.png" width="600"/>
+  <br>
+</div>
 
-[![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)](https://python.org)
-[![Claude API](https://img.shields.io/badge/powered%20by-Claude%20API-orange)](https://anthropic.com)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Code Style](https://img.shields.io/badge/code%20style-professional-lightgrey)](https://github.com)
+# Nawi - Agente Documentador Inteligente
+
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
+[![Claude API](https://img.shields.io/badge/Claude-Sonnet%204-purple.svg)](https://www.anthropic.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/Version-3.0-gr)]()
+
 
 Sistema inteligente de documentação automatizada que analisa projetos, pastas ou arquivos específicos e gera documentação contextual de alta qualidade usando a API Claude da Anthropic.
 
@@ -333,18 +339,52 @@ O sistema utiliza logging colorido para facilitar o diagnóstico:
 - **Vermelho**: Erros que impedem execução
 - **Azul**: Informações de progresso
 
-## Próximos Passos / Roadmap
+## Changelog
 
-### Melhorias Planejadas
+### v3.0 - Março 2026 (ATUAL)
 
-- **Suporte a Mais Linguagens**: Adicionar Go, Rust, JavaScript/TypeScript
-- **Cache Inteligente**: Evitar reprocessamento desnecessário de arquivos
-- **Integração Git**: Documentar apenas arquivos modificados
-- **Templates Personalizados**: Permitir templates customizados por tipo de projeto
-- **Interface Web**: Versão web para uso em equipes
-- **Integração CI/CD**: Plugin para pipelines de integração contínua
-- **Métricas de Qualidade**: Scoring automático da documentação gerada
+**Nova Arquitetura:**
+
+- Separação modular do projeto
+
+
+**Novas Funcionalidades:**
+
+- Log customizado e com cores
+- Interface interativa entre caminhos e pastas
+- Banner do Nawi no output
+- Arquivo com configuração global do agente
+
+
+### v2.0 - Janeiro 2026
+
+**Funcionalidades:**
+
+- Sistema adaptativo de detecção de contexto
+- Três modos de documentação (arquivo único, projeto pequeno, projeto completo)
+- System prompts especializados por contexto
+- Métodos internos separados para cada tipo de geração
+
+**Melhorias:**
+
+- Documentação mais relevante e contextual
+- Evita seções desnecessárias para arquivos únicos
+- Melhor experiência para análise de scripts isolados
+- Output indica modo detectado
+
+**Correções:**
+
+- Arquivo único não é mais tratado como "projeto completo"
+- Documentação não menciona instalação quando inadequado
+
+### v1.0 - Dezembro 2025
+
+**Funcionalidades Iniciais:**
+- Escaneamento de diretórios
+- Geração de documentação com Claude
+- Suporte a Python, Notebooks, Terraform, JSON, Markdown
+- System prompt profissional único
 
 ---
 
-**Desenvolvido com foco em produtividade e qualidade de documentação técnica.**
+**Projeto Open Source** | **Licenciado sob MIT** | **Última atualização: Fevereiro 2026** | **Versão: 3.0**
