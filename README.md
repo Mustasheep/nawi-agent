@@ -387,4 +387,4 @@ O sistema utiliza logging colorido para facilitar o diagnóstico:
 
 ---
 
-**Projeto Open Source** | **Licenciado sob MIT** | **Última atualização: Fevereiro 2026** | **Versão: 3.0**
+**Projeto Open Source** | **Licenciado sob MIT** | **Última atualização: Março 2026** | **Versão: 3.0**
