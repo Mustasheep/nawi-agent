@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./docs/img/nawi-banner.png" width="600"/>
+  <img src="./img/nawi-banner.png" width="600"/>
   <br>
 </div>
 
@@ -8,492 +8,353 @@
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
 [![Claude API](https://img.shields.io/badge/Claude-Sonnet%204-purple.svg)](https://www.anthropic.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-**O Nawi é um agente inteligente baseado em tools para geração automática de documentação técnica profissional usando Claude AI**
-
-## Visão Geral
-
-Este agente utiliza a arquitetura tool-based do Claude para analisar projetos de software em profundidade e gerar documentação técnica de alta qualidade. Diferente de soluções simples que apenas formatam código, este agente:
-
-- **Analisa estrutura de código** usando AST parsing
-
-- **Detecta padrões arquiteturais** (MVC, Clean Architecture, Microservices, etc)
-
-- **Mapeia dependências** internas e externas
-
-- **Avalia qualidade do código** com métricas objetivas
-
-- **Gera documentação contextual** baseada em análises reais
+[![License](https://img.shields.io/badge/Version-3.0-gr)]()
 
 
-## Estrutura do Agente
+Sistema inteligente de documentação automatizada que analisa projetos, pastas ou arquivos específicos e gera documentação contextual de alta qualidade usando a API Claude da Anthropic.
 
-```
-nawi-agent/
-├── agent.py                        # Agente principal com loop tool-based
-├── main.py                         # CLI interface
-├── requirements.txt
-├── test.py                         # Verificação de arquivos, pastas e dependências
-├── core/
-│   ├── __init__.py
-│   ├── claude_client.py            # Cliente API com suporte a tools
-│   ├── file_scanner.py             # Scanner de arquivos
-│   └── context_builder.py          # Construtor de contexto
-│
-├── docs/
-│   └── EXAMPLE.md                  # Casos de uso com exemplos
-│
-├── tools/
-│   ├── __init__.py
-│   ├── base_tool.py                # Classe abstrata para tools
-│   ├── code_analyzer.py            # Análise de código
-│   ├── architecture_detector.py    # Detecção de arquitetura
-│   ├── dependency_mapper.py        # Mapeamento de dependências
-│   └── quality_checker.py          # Verificação de qualidade
-│
-├── templates/
-│   ├── __init__.py
-│   └── doc_templates.py            # Templates de documentação
-│
-└── utils/
-    ├── __init__.py
-    └── logger.py                   # Sistema de logging
+## Visão Geral do Projeto
+
+O Agente Nawi é uma ferramenta de documentação técnica automatizada que resolve o problema da documentação inconsistente ou inexistente em projetos de desenvolvimento. Utilizando a inteligência artificial do Claude, o sistema analisa códigos, estruturas de projeto e gera documentação profissional e contextualizada.
+
+### Principais Features
+
+- Análise inteligente de estruturas de projeto com detecção automática de tipos
+- Geração de documentação contextual baseada no tamanho e complexidade do projeto
+- Suporte a múltiplas linguagens e tecnologias (Python, Terraform, Notebooks, SQL, YAML)
+- Interface de linha de comando intuitiva com seleção interativa de caminhos
+- Configurações flexíveis para diferentes cenários de documentação
+- Filtragem automática de arquivos irrelevantes e otimização de contexto
+
+### Arquitetura do Sistema
+
+```mermaid
+graph TB
+    subgraph "Interface"
+        A[main.py]
+        B[PathPicker/<br/>FolderPicker]
+    end
+    
+    subgraph "Configuração"
+        H[Settings]
+        I[Templates]
+    end
+    
+    subgraph " "
+        C[FileScanner]
+        F[Análise & Categorização<br/>de Arquivos]
+        J[Detecção do Tipo<br/>de Projeto]
+    end
+    
+    subgraph " "
+        N[Arquivo Único]
+        O[Projeto Pequeno]
+        P[Projeto Completo]
+    end
+    
+    subgraph " "
+        D[DocGenerator]
+        G[ClaudeClient<br/>↓<br/>API Claude]
+    end
+    
+    A --> B
+    A --> C
+    A --> D
+    
+    B -.->|Seleção Interativa| C
+    H -.->|Configurações| C
+    H -.->|Configurações| D
+    I -.->|Templates Base| D
+    
+    C --> F
+    F --> J
+    
+    J -->|Arquivo único?| N
+    J -->|Projeto pequeno?| O
+    J -->|Projeto completo?| P
+    
+    N --> D
+    O --> D
+    P --> D
+    
+    D --> G
+    G --> R[📄 Documentação<br/>Gerada]
+    
+    style A fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
+    style R fill:#50C878,stroke:#2D7A4A,stroke-width:3px,color:#fff
+    style G fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
+    style N fill:#F39C12,stroke:#B8770E,stroke-width:2px,color:#fff
+    style O fill:#F39C12,stroke:#B8770E,stroke-width:2px,color:#fff
+    style P fill:#F39C12,stroke:#B8770E,stroke-width:2px,color:#fff
 ```
 
 ## Pré-requisitos
 
-- Python 3.12+
-- Conta na Anthropic com API key
-- Conexão com internet
+### Ferramentas Necessárias
 
-## Instalação
+- **Python**: 3.8 ou superior
+- **pip**: Para instalação de dependências
+- **Git**: Para clonagem do repositório
 
-### 1. Clone o repositório
+### Conhecimentos Recomendados
 
-```bash
-git clone <repository-url>
-cd doc_agent
+- Conceitos básicos de Python e desenvolvimento de software
+- Familiaridade com APIs REST e chaves de autenticação
+- Conhecimento de estruturas de projeto de desenvolvimento
+
+### Credenciais Necessárias
+
+- **Chave API Anthropic**: Obtenha em [console.anthropic.com](https://console.anthropic.com)
+- Créditos suficientes na conta Anthropic para uso da API Claude
+
+## Estrutura do Projeto
+
+```
+agente-nawi/
+├── main.py                     # Ponto de entrada principal do sistema
+├── config/
+│   ├── __init__.py            # Exportações do módulo de configuração
+│   └── settings.py            # Configurações centralizadas do sistema
+├── prompts/
+│   ├── __init__.py            # Exportações dos templates
+│   └── templates.py           # Templates de prompt para diferentes tipos
+├── scanner/
+│   ├── __init__.py            # Exportações do scanner
+│   └── file_scanner.py        # Motor de análise e categorização de arquivos
+├── src/
+│   ├── __init__.py            # Exportações principais
+│   ├── claude_client.py       # Cliente HTTP para API Anthropic
+│   └── doc_generator.py       # Orquestrador de geração de documentação
+├── ui/
+│   ├── __init__.py            # Exportações da interface
+│   ├── path_picker.py         # Seletor interativo de caminhos
+│   └── folder_picker.py       # Seletor interativo de pastas
+├── utils/
+│   ├── __init__.py            # Utilitários diversos
+│   └── logger.py              # Sistema de logging colorido
+└── requirements.txt           # Dependências do Python
 ```
 
-### 2. Instale as dependências
+## Guia de Instalação
+
+### 1. Clonar o Repositório
+
+```bash
+git clone https://github.com/seu-usuario/agente-nawi.git
+cd agente-nawi
+```
+
+### 2. Criar Ambiente Virtual
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# ou
+venv\Scripts\activate     # Windows
+```
+
+### 3. Instalar Dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configure a API Key
-
-**Linux/Mac:**
-```bash
-export ANTHROPIC_API_KEY='sua-chave-aqui'
-```
-
-**Windows:**
-```cmd
-set ANTHROPIC_API_KEY=sua-chave-aqui
-```
-
-**Ou crie um arquivo `.env`:**
-```bash
-echo "ANTHROPIC_API_KEY=sua-chave-aqui" > .env
-```
-
-**Obtenha sua chave em:** https://console.anthropic.com/
-
-### 4. Torne o script executável (Linux/Mac)
+### 4. Configurar Variável de Ambiente
 
 ```bash
-chmod +x main.py
+# Linux/Mac
+export ANTHROPIC_API_KEY="sua-chave-api-aqui"
+
+# Windows
+set ANTHROPIC_API_KEY=sua-chave-api-aqui
+```
+
+### 5. Verificar Instalação
+
+```bash
+python main.py --help
 ```
 
 ## Como Usar
 
-### Uso Básico
+### Execução Interativa Básica
 
 ```bash
-# Documentar um diretório
-python main.py ./src
-
-# Documentar arquivo único
-python main.py script.py
-
-# Múltiplos caminhos
-python main.py ./src ./tests ./config
-
-# Especificar saída
-python main.py ./src -o docs/README.md
-
-# Especificar nome do projeto
-python main.py ./src -n "Meu Projeto API"
+python main.py
 ```
 
-### Uso Avançado
+O sistema iniciará o modo interativo onde você pode:
+- Selecionar caminhos específicos para análise
+- Escolher pasta de saída para documentação
+- Definir nome do projeto e arquivo de saída
+
+### Comandos Principais
 
 ```bash
-# Template específico
-python main.py ./api -t api -o API_DOCS.md
+# Executar análise completa interativa
+python main.py
 
-# Modo verbose (mais logs)
-python main.py ./src -v
+# Especificar projeto específico
+python main.py --project "Nome do Projeto"
 
-# API key inline
-python main.py ./src --api-key sk-ant-xxx
-
-# Modo legado sem tools
-python main.py ./src --no-tools
+# Definir pasta de saída
+python main.py --output "./docs"
 ```
 
-### Opções Disponíveis
+### Casos de Uso Comuns
 
-```
-positional arguments:
-  paths                 Caminhos para analisar (diretórios ou arquivos)
+#### 1. Documentar Arquivo Único
+- Selecione um arquivo Python, notebook ou script
+- O sistema detectará automaticamente como "single_file"
+- Gerará documentação focada na funcionalidade específica
 
-optional arguments:
-  -h, --help           Mostra ajuda
-  -o, --output         Caminho do arquivo de saída (default: README.md)
-  -n, --name           Nome do projeto (default: Projeto)
-  -t, --template       Template: auto, single_file, small_project, full_project, api
-  --no-tools           Desabilita uso de tools (modo legado)
-  -v, --verbose        Modo verbose
-  --fast               Modo rápido (menos contexto/iterações)
-  --api-key            API Key da Anthropic
-```
+#### 2. Documentar Projeto Pequeno (2-5 arquivos)
+- Selecione alguns arquivos relacionados
+- Sistema aplicará template "small_project"
+- Documentação concisa e direta
 
----
+#### 3. Documentar Projeto Completo
+- Selecione pasta inteira do projeto
+- Sistema escaneará automaticamente arquivos relevantes
+- Gerará documentação abrangente com arquitetura
 
-## Funcionamento do Nawi
+## Documentação de Componentes
 
-### Workflow Tool-Based
+### main.py - Orquestrador Principal
 
-```mermaid
-sequenceDiagram
-    participant CLI
-    participant Nawi
-    participant Claude
-    participant Tools
+**Responsabilidade**: Ponto de entrada e coordenação do fluxo principal
+- Gerencia a interação entre UI, scanner e gerador
+- Valida caminhos e configurações
+- Controla o fluxo assíncrono de execução
 
-    CLI->>Nawi: Paths + Config
-    Nawi->>Nawi: Scan Files
-    Nawi->>Nawi: Build Context
-    Nawi->>Claude: Context + Tool Definitions
-    
-    loop Nawi Loop
-        Claude->>Nawi: Tool Use Requests
-        Nawi->>Tools: Execute Tools
-        Tools-->>Nawi: Results
-        Nawi->>Claude: Tool Results
-    end
-    
-    Claude-->>Nawi: Final Documentation
-    Nawi->>CLI: Save & Report
-```
+### config/settings.py - Configurações Centralizadas
 
-### Fluxo de Análise
+**Responsabilidade**: Todas as configurações do sistema
+- Limites de tokens por tipo de documentação
+- Extensões de arquivo suportadas
+- Thresholds para detecção de tipo de projeto
+- Diretórios e arquivos a serem ignorados
 
-1. **Escaneamento**: FileScanner identifica e organiza arquivos relevantes
+### scanner/file_scanner.py - Motor de Análise
 
-2. **Contexto**: ContextBuilder prepara contexto estruturado
+**Responsabilidade**: Análise e categorização de arquivos
+- Escaneamento recursivo de diretórios
+- Filtragem por extensão e tamanho
+- Categorização automática de arquivos
+- Detecção de tipo de projeto baseada em heurísticas
 
-3. **Análise**: Claude invoca tools automaticamente:
+### src/claude_client.py - Cliente API
 
-   - `code_analyzer` - Extrai estrutura e métricas
+**Responsabilidade**: Comunicação com API Anthropic
+- Requisições HTTP assíncronas
+- Gerenciamento de headers e autenticação
+- Tratamento de erros de API
+- Controle de limites de tokens
 
-   - `architecture_detector` - Identifica padrões
+### prompts/templates.py - Sistema de Templates
 
-   - `dependency_mapper` - Mapeia dependências
+**Responsabilidade**: Templates de prompt especializados
+- Template para arquivo único
+- Template para projeto pequeno  
+- Template para projeto completo
+- Diretrizes de formatação profissional
 
-   - `quality_checker` - Avalia qualidade
+## Configuração
 
-4. **Síntese**: Claude processa resultados e gera documentação
+### Variáveis de Ambiente
 
-5. **Output**: Documentação salva em Markdown profissional
+| Variável | Descrição | Obrigatório | Exemplo |
+|----------|-----------|-------------|---------|
+| `ANTHROPIC_API_KEY` | Chave da API Anthropic | Sim | `sk-ant-api03-...` |
 
-### Componentes Principais
+### Configurações do Sistema
 
-#### Core (`/core`)
+As configurações principais estão em `config/settings.py`:
 
-- **ClaudeClient**: Cliente para API da Anthropic com suporte a tool use
+| Configuração | Valor Padrão | Descrição |
+|--------------|--------------|-----------|
+| `MODEL` | `claude-sonnet-4-20250514` | Modelo Claude utilizado |
+| `MAX_TOKENS_SINGLE_FILE` | `6000` | Tokens para arquivo único |
+| `MAX_TOKENS_SMALL_PROJECT` | `6000` | Tokens para projeto pequeno |
+| `MAX_TOKENS_FULL_PROJECT` | `8000` | Tokens para projeto completo |
+| `MAX_FILE_SIZE_BYTES` | `100000` | Tamanho máximo por arquivo |
+| `SINGLE_FILE_THRESHOLD` | `1` | Limite para arquivo único |
+| `SMALL_PROJECT_THRESHOLD` | `5` | Limite para projeto pequeno |
 
-- **FileScanner**: Escaneia e organiza arquivos do projeto
-
-- **ContextBuilder**: Constrói contexto estruturado para o Claude
-
-#### Tools (`/tools`)
-
-- **CodeAnalyzerTool**: Analisa código fonte usando AST, extrai estruturas e métricas
-
-- **ArchitectureDetectorTool**: Detecta padrões arquiteturais com confiança
-
-- **DependencyMapperTool**: Mapeia dependências diretas, transitivas e circulares
-- **QualityCheckerTool**: Avalia qualidade com scores e recomendações
-
-#### Templates (`/templates`)
-
-- **DocumentationTemplateManager**: Gerencia templates para diferentes tipos de documentação
-
-#### Utils (`/utils`)
-
-- **Logger**: Sistema de logging com cores e níveis
-
-## Tools Disponíveis
-
-### 1. CodeAnalyzerTool
-
-Analisa código fonte em profundidade usando AST parsing.
-
-**Capacidades:**
-
-- Extrai funções, classes, métodos
-- Identifica imports e dependências
-- Calcula complexidade ciclomática
-- Detecta padrões de código
-
-**Suporta:** Python, JavaScript, TypeScript
-
-### 2. ArchitectureDetectorTool
-
-Detecta padrões arquiteturais no projeto.
-
-**Identifica:**
-
-- MVC, MVP, MVVM
-- Clean Architecture / Hexagonal
-- Microservices vs Monolito
-- Repository Pattern
-- Domain-Driven Design (DDD)
-- Event-Driven Architecture
-
-**Retorna:** Padrões com confiança e evidências
-
-### 3. DependencyMapperTool
-
-Mapeia todas as dependências do projeto.
-
-**Analisa:**
-
-- Dependências externas (npm, pip, maven, etc)
-- Dependências internas entre módulos
-- Dependências transitivas
-- Dependências circulares
-
-**Gera:** Grafo de dependências + métricas
-
-### 4. QualityCheckerTool
-
-Avalia qualidade do código objetivamente.
-
-**Métricas:**
-
-- Cobertura de documentação
-- Presença de testes
-- Convenções de nomenclatura
-- Complexidade de código
-- Seguimento de boas práticas
-
-**Retorna:** Score geral + recomendações
-
-## Templates
-
-O agente possui templates especializados:
-
-### Single File
-
-Para documentar um único arquivo com foco em funcionalidade específica.
-
-### Small Project
-
-Para projetos com 2-5 arquivos, documentação concisa.
-
-### Full Project (Default)
-
-Para projetos completos, documentação abrangente com:
-- Arquitetura detalhada
-- Guia de instalação
-- Análise de qualidade
-- Troubleshooting
-
-### API
-
-Template específico para documentação de APIs REST/GraphQL.
-
----
-
-## Exemplos de Uso
-
-### Exemplo 1: Documentar Script Python
-
-```bash
-python main.py meu_script.py -n "Script de Automação" -t "single_file"
-```
-
-**Resultado:** Documentação focada no arquivo específico com análise de funções, classes e uso.
-
-### Exemplo 2: Documentar Vários Arquivos
-
-```bash
-python main.py ./notebooks/eda.py ./src/script.py -n "Análises Exploratórias" -o ./docs/documentacao_eda.md
-```
-
-**Resultado:** Documentação completa do notebook e script com output selecionado.
-
-### Exemplo 3: Análise de Qualidade
-
-```bash
-python main.py ./src -v
-```
-
-**Resultado:** Documentação + logs detalhados mostrando:
-
-- Score de qualidade por categoria
-- Padrões arquiteturais detectados
-- Dependências mapeadas
-- Recomendações de melhoria
-
-## Extensibilidade
-
-### Criando Novas Tools
+### Extensões Suportadas
 
 ```python
-from tools.base_tool import Tool
-from typing import Dict, Any
-
-class MinhaCustomTool(Tool):
-    @property
-    def name(self) -> str:
-        return "minha_tool"
-    
-    @property
-    def description(self) -> str:
-        return "Descrição do que a tool faz"
-    
-    @property
-    def input_schema(self) -> Dict[str, Any]:
-        return {
-            "type": "object",
-            "properties": {
-                "param": {"type": "string", "description": "..."}
-            },
-            "required": ["param"]
-        }
-    
-    async def execute(self, input_data: Dict[str, Any]) -> Any:
-        # Sua lógica aqui
-        return {"result": "..."}
+EXTENSIONS = {
+    'python': ('.py',),
+    'notebooks': ('.ipynb',),
+    'terraform': ('.tf', '.tfvars'),
+    'json': ('.json',),
+    'markdown': ('.md',),
+    'sql': ('.sql',),
+    'yaml': ('.yml', '.yaml'),
+}
 ```
-
-### Registrando Tool
-
-```python
-# Em agent.py, método _register_tools()
-from tools.minha_tool import MinhaCustomTool
-
-self.tools.append(MinhaCustomTool())
-```
-
-### Criando Templates Customizados
-
-```python
-from templates.doc_templates import DocumentationTemplate
-
-template = DocumentationTemplate(
-    name="meu_template",
-    description="Template para X",
-    system_prompt="Instruções detalhadas..."
-)
-
-template_manager.register_template(template)
-```
-
----
-
-## Comparação: Versão 2.0 vs Versão 3.0 Tool-Based
-
-| Aspecto | Antiga Versão | Tool-Based |
-|---------|----------|------------|
-| **Análise** | Superficial | Profunda com AST |
-| **Arquitetura** | Não detecta | Detecta padrões |
-| **Dependências** | Lista básica | Grafo completo |
-| **Qualidade** | Não avalia | Score + métricas |
-| **Extensibilidade** | Limitada | Modular |
-| **Precisão** | Estimativa | Dados reais |
-| **Manutenibilidade** | Monolítico | Modular |
-
-## Vantagens da Arquitetura Tool-Based
-
-1. **Análise Profunda**: Tools extraem dados reais ao invés de estimativas
-2. **Modularidade**: Cada tool é independente e testável
-3. **Extensibilidade**: Fácil adicionar novas tools sem modificar core
-4. **Reutilização**: Tools podem ser usadas em outros contextos
-5. **Precisão**: Documentação baseada em análises objetivas
-6. **Adaptabilidade**: Claude escolhe quais tools usar automaticamente
-
-## Limitações Conhecidas
-
-- **Tamanho de Arquivo**: Limitado a 100KB por arquivo (configurável)
-- **Linguagens**: Análise completa apenas para Python e JavaScript/TS
-- **API Rate Limits**: Sujeito aos limites da API Anthropic
-- **Token Limit**: Context window de ~200K tokens
-
----
 
 ## Troubleshooting
 
-### Erro: "API Key não encontrada"
+### Problemas Comuns
 
-**Solução:** Configure a variável de ambiente `ANTHROPIC_API_KEY`
-
+#### 1. Erro de Autenticação API
 ```bash
-export ANTHROPIC_API_KEY='sua-chave'
+# Verificar se a chave está definida
+echo $ANTHROPIC_API_KEY
+
+# Redefinir a chave
+export ANTHROPIC_API_KEY="sua-chave-correta"
 ```
 
-### Erro: "Module not found"
+#### 2. Arquivo Muito Grande
+- **Sintoma**: "Arquivo muito grande (>100KB)"
+- **Solução**: Ajustar `MAX_FILE_SIZE_BYTES` em settings.py ou dividir arquivo
 
-**Solução:** Instale as dependências
+#### 3. Muitos Arquivos no Contexto
+- **Sintoma**: Erro de limite de tokens
+- **Solução**: Reduzir `MAX_FILES_IN_CONTEXT_FULL` ou usar seleção mais específica
 
-```bash
-pip install -r requirements.txt
-```
-
-### Documentação incompleta
-
-**Solução:** Use modo verbose para diagnosticar
+### Comandos de Diagnóstico
 
 ```bash
-python main.py ./src -v
+# Verificar estrutura do projeto
+find . -name "*.py" -type f | head -10
+
+# Verificar tamanho dos arquivos
+find . -name "*.py" -exec ls -la {} \; | head -5
+
+# Testar conectividade com API (curl)
+curl -H "x-api-key: $ANTHROPIC_API_KEY" \
+     -H "anthropic-version: 2023-06-01" \
+     https://api.anthropic.com/v1/messages
 ```
 
-### Tools não sendo executadas
+### Logs do Sistema
 
-**Solução:** Verifique logs verbose. Se persistir, use `--no-tools` temporariamente
-
----
+O sistema utiliza logging colorido para facilitar o diagnóstico:
+- **Verde**: Operações bem-sucedidas
+- **Amarelo**: Avisos não críticos
+- **Vermelho**: Erros que impedem execução
+- **Azul**: Informações de progresso
 
 ## Changelog
 
-### v3.0 - Fevereiro 2026 (ATUAL)
+### v3.0 - Março 2026 (ATUAL)
 
 **Nova Arquitetura:**
 
-- Sistema completo baseado em tools independentes
-- Loop tool-based para análises profundas
-- Separação modular em 20 arquivos
+- Separação modular do projeto
 
-**Novas Tools:**
-
-- CodeAnalyzerTool: AST parsing Python
-- ArchitectureDetectorTool: 6+ padrões
-- DependencyMapperTool: Grafo + circulares
-- QualityCheckerTool: Score 0-100
 
 **Novas Funcionalidades:**
 
-- CLI profissional com flags
-- Modo verbose para debugging
-- Sistema de logging com cores
-- Templates extensíveis
-- Suporte a arquivos específicos
-- Modo não-interativo para CI/CD
+- Log customizado e com cores
+- Interface interativa entre caminhos e pastas
+- Banner do Nawi no output
+- Arquivo com configuração global do agente
+
 
 ### v2.0 - Janeiro 2026
 
@@ -524,19 +385,6 @@ python main.py ./src -v
 - Suporte a Python, Notebooks, Terraform, JSON, Markdown
 - System prompt profissional único
 
-
-## Contribuindo
-
-Contribuições são bem-vindas! Áreas de interesse:
-
-1. Novas tools
-2. Suporte a mais linguagens
-3. Templates especializados
-4. Melhorias no parsing
-5. Testes automatizados
-
 ---
 
 **Projeto Open Source** | **Licenciado sob MIT** | **Última atualização: Fevereiro 2026** | **Versão: 3.0**
-
-
